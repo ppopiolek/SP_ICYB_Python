@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>python_podstawy.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="studia-podyplomowe---in%C5%BCyniera-cyberbezpiecze%C5%84stwa">Studia Podyplomowe - Inżyniera Cyberbezpieczeństwa</h1>
+<h2 id="laboratorium-python---podstawy">Laboratorium Python - podstawy</h2>
+<p>Autor: Paweł Popiołek &lt;<a href="mailto:papopiolek@gmail.com">papopiolek@gmail.com</a>&gt;</p>
+<h2 id="spis-tre%C5%9Bci">Spis Treści</h2>
+<ol>
+<li><a href="#wprowadzenie">Wprowadzenie</a></li>
+<li><a href="#wykonywanie-polecen">Wykonywanie poleceń</a></li>
+<li><a href="#zmienne">Zmienne</a></li>
+<li><a href="#operatory">Operatory</a></li>
+<li><a href="#srodowisko-pracy">Środowisko pracy</a></li>
+<li><a href="#listy">Listy</a></li>
+<li><a href="#instrukcje-warunkowe-petle">Instrukcje Warunkowe, Pętle</a></li>
+<li><a href="#funkcje">Funkcje</a></li>
+<li><a href="#klasy">Klasy</a></li>
+<li><a href="#biblioteki-i-srodowiska-wirtualne">Biblioteki i środowiska wirtualne</a></li>
+<li><a href="#wyrazenia-regularne-w-pythonie-regex">Wyrażenia regularne w Pythonie (RegEx)</a></li>
+<li><a href="#pisanie-stylowego-kodu-pep8">Pisanie stylowego kodu (PEP8)</a></li>
+</ol>
+<h1 id="1-wprowadzenie-a-id%22wprowadzenie%22a">1. Wprowadzenie <a id="wprowadzenie"></a></h1>
+<h2 id="czym-jest-python">Czym jest Python?</h2>
+<p><strong>Dlaczego warto nauczyć się Pythona dla potrzeb cyberbezpieczeństwa?</strong> Język ten, plasujący się na czele listy najchętniej wybieranych języków skryptowych, jest doskonałym narzędziem do automatyzacji monotonnych zadań i tworzenia różnorodnych aplikacji. W środowiskach eksperckich z dziedziny cyberbezpieczeństwa Python jest często wybierany do tworzenia tzw. PoC (Proof of Concepts) oraz wielu narzędzi do sprawdzania bezpieczeństwa systemów. Jego łatwa w nauce składnia sprzyja szybkiemu prototypowaniu, a elastyczność oraz obszerna pomoc społeczności sprawiają, że jest on również odpowiedni dla bardziej złożonych projektów.</p>
+<p>Oto kilka kluczowych obszarów zastosowań Pythona w cyberbezpieczeństwie:</p>
+<ol>
+<li><strong>Automatyzacja Zadań</strong>: Szybkie tworzenie skryptów do automatyzacji zadań, takich jak zbieranie danych o zagrożeniach, analiza logów czy zarządzanie konfiguracją zabezpieczeń.</li>
+<li><strong>Analiza Malware</strong>: Używanie narzędzi i bibliotek do badania złośliwego oprogramowania i zrozumienia, jakie zagrożenia może ono stwarzać.</li>
+<li><strong>Testy Penetracyjne</strong>: Projektowanie narzędzi i skryptów do przeprowadzania testów penetracyjnych w celu identyfikacji i oceny podatności systemów.</li>
+<li><strong>Kryminalistyka Cyfrowa</strong>: Analiza dowodów cyfrowych w celu identyfikacji nieautoryzowanej aktywności i rekonstrukcji zdarzeń.</li>
+<li><strong>Odpowiedź na Incydenty</strong>: Tworzenie narzędzi do szybkiego reagowania na incydenty bezpieczeństwa i łagodzenia ich skutków.</li>
+<li><strong>Rozwój Narzędzi Bezpieczeństwa</strong>: Projektowanie i rozwijanie narzędzi do monitorowania bezpieczeństwa, wykrywania anomalii i ochrony przed zagrożeniami.</li>
+</ol>
+<p>Nie zależnie od tego, czy planujesz tworzyć skrypty do automatyzacji działań na stronie internetowej, analizować ogromne zbiory danych, przeprowadzać zaawansowane ataki na systemy czy projektować interaktywne usługi bezpieczeństwa, Python jest świetnym wyborem.</p>
+<p><strong>Co jeszcze warto wiedzieć o Pythonie?</strong> Jest to język interpretowany, co oznacza, że nie wymaga kompilacji kodu do postaci maszynowej, jak w przypadku języka C. Kod jest interpretowany przez Pythona bezpośrednio w trakcie wykonania. Jest to również język wysokiego poziomu, co upraszcza proces programowania, eliminując potrzebę martwienia się o zarządzanie pamięcią czy bezpośrednie wywołania systemowe. Python jest wszechstronny i nie narzuca jednego, konkretnego paradygmatu programowania.</p>
+<h1 id="2-wykonywanie-polece%C5%84-a-id%22wykonywanie-polecen%22a">2. Wykonywanie poleceń <a id="wykonywanie-polecen"></a></h1>
+<p>Kod w Pythonie można uruchomić na wiele sposobów. Dwie najczęściej używane metody to uruchamianie kodu z pliku .py oraz bezpośrednio w środowisku Python IDLE. W tym fragmencie przyjrzymy się, jak korzystać z obu tych metod. Uruchamianie kodu z pliku jest przydatne podczas tworzenia pełnego skryptu, podczas gdy IDLE jest idealne do szybkiego testowania niewielkich fragmentów kodu. Zacznijmy od metody opartej na plikach.</p>
+<p><strong>Wykonywanie z pliku.</strong> Klasyczny kod, który wyświetla napis &quot;Hello world!&quot;. W Pythonie prezentuje się tak:</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Hello world!"</span>)
+</div></code></pre>
+<p>Uruchamiając ten skrypt, napis &quot;Hello world!&quot; zostanie wyświetlony w terminalu. Aby to przetestować, otwórz edytor tekstu, wprowadź powyższy kod i zapisz plik jako hello.py. Następnie uruchom go poleceniem <code>python3 hello.py</code>. Uwaga: Pamiętaj o konieczności uruchomienia skryptu z poziomu odpowiedniego katalogu (do przechodzenia pomiędzy katalogami, wykorzystaj polecenie<code>cd</code>).</p>
+<pre class="hljs"><code><div>[~] python3 hello.py
+Hello world!
+</div></code></pre>
+<p><strong>IDLE.</strong> Możemy również korzystać z IDLE, wbudowanego środowiska Pythona, bezpośrednio w terminalu, co ułatwia szybkie prototypowanie. Uruchamiamy je, wywołując binarny plik Pythona bez żadnych argumentów (<code>python3</code>). W IDLE możemy wykonywać proste operacje matematycznie, lub tworzyć i używać zmienne. Rezultat wyrażenia zostanie wyświetlony w kolejnym wierszu, chyba że wynik zostanie przypisany do zmiennej - wtedy nic się nie wyświetli. Możemy również importować biblioteki oraz definiować funkcje i klasy bezpośrednio w IDLE. W dalszej części tutoriala zagłębimy się bardziej w biblioteki, funkcje i klasy. Oto przykład użycia IDLE:</p>
+<pre class="hljs"><code><div>[~] python3
+Python 3.11.5 (main, Aug 24 2023, 15:09:45)
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 2 + 4
+6
+&gt;&gt;&gt; zmienna = 2 + 5
+&gt;&gt;&gt; zmienna
+7
+&gt;&gt;&gt; zmienna + 5
+12
+&gt;&gt;&gt; print('Hello world!')
+Hello world!
+</div></code></pre>
+<p>Kod w Pythonie jest wykonywany od góry do dołu. Jest to ważne do zapamiętania podczas pisania skryptów w Pythonie, ponieważ język nie wie, co jest dalej w skrypcie dopóki do tego nie dojdzie. Jeśli chcielibyśmy wypisać zmienną zamiast wartość bezpośrednio, musi być ona zdefiniowana przed odwołaniem. Na przykład</p>
+<pre class="hljs"><code><div>&gt;&gt;&gt; zmienna = 'Tekst do wypisania'
+&gt;&gt;&gt; print(zmienna)
+Tekst do wypisania
+</div></code></pre>
+<p>Aby wyjść z IDLE, wpisujemy <code>exit(0)</code>. Liczba 0 to kod powrotu (ang. return code), gdzie 0 oznacza, że wszystko jest w porządku (przyjęło się, że wartość różna od 0 wskazuje na błąd).</p>
+<pre class="hljs"><code><div>&gt;&gt;&gt; exit(0)
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>Napisz skrypt, w którym zdefiniujesz dwie liczby, a następnie z wykorzystaniem funkcji print wypisz ich sumę. Kod wykonaj z pliku.</li>
+<li>Zrób to samo tylko przy wykorzystaniu Python IDLE.</li>
+<li>Zapisz i wykonaj z pliku następujący skrypt w którym odwołanie do zmiennej następuje przed jej zadeklarowaniem, sprawdź co się stanie. Następnie popraw skrypt, tak aby wszystko wykonało się prawidłowo.<pre class="hljs"><code><div>print(tekst)
+tekst = <span class="hljs-string">"Od góry do dołu"</span>
+</div></code></pre>
+</li>
+</ol>
+<h1 id="3-zmienne-a-id%22zmienne%22a">3. Zmienne <a id="zmienne"></a></h1>
+<p><strong>Nazewnictwo zmiennych</strong></p>
+<p>W Pythonie, przyjęte są pewne konwencje i zasady dotyczące nazewnictwa zmiennych. Nazwy zmiennych powinny być zawsze opisowe i łatwe do zrozumienia, co ułatwia czytanie i utrzymanie kodu. Nazwy mogą składać się z liter (zarówno małych, jak i dużych), cyfr oraz znaku podkreślenia <code>_</code>, ale nie mogą zaczynać się od cyfry. W Pythonie wielkość liter ma znaczenie, więc <code>zmienna</code>, <code>Zmienna</code> i <code>ZMIENNA</code> będą traktowane jako trzy różne zmienne. Zalecane jest stosowanie notacji <code>snake_case</code> dla nazw zmiennych (czyli słowa oddzielane znakiem podkreślenia i pisane małymi literami), na przykład <code>moja_zmienna</code>. Stosowanie notacji <code>CamelCase</code> jest zazwyczaj zarezerwowane dla nazw klas. Oto kilka przykładów poprawnych nazw zmiennych:</p>
+<pre class="hljs"><code><div>moja_zmienna = <span class="hljs-number">10</span>
+wiek_uzytkownika = <span class="hljs-number">21</span>
+suma = <span class="hljs-number">5</span> + <span class="hljs-number">3</span>
+</div></code></pre>
+<p>Należy unikać używania słów kluczowych języka Python (takich jak <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>class</code>, <code>def</code>, <code>return</code> itp.) jako nazw zmiennych, ponieważ może to prowadzić do nieoczekiwanych błędów i problemów w działaniu programu.</p>
+<p><strong>Łańcuchy znaków</strong></p>
+<p>W Pythonie stringi (łańcuchy znaków) mogą zawierać specjalne sekwencje znaków, które są interpretowane w specyficzny sposób. Te znaki specjalne są poprzedzone odwrotnym ukośnikiem (<code>\</code>) i służą do reprezentowania białych znaków, takich jak nowe linie, tabulacje, czy też do umieszczania w stringach znaków specjalnych, takich jak apostrofy czy cudzysłowy, które zwykle mają specjalne znaczenie w Pythonie. Poniżej znajdziesz tabelę z najczęściej używanymi znakami specjalnymi w stringach Pythona:</p>
+<table>
+<thead>
+<tr>
+<th>Znak Specjalny</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\\</code></td>
+<td>Backslash ()</td>
+</tr>
+<tr>
+<td><code>\'</code></td>
+<td>Apostrof (')</td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>Cudzysłów (&quot;)</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>Nowa linia (linefeed)</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>Tabulacja pozioma (horizontal tab)</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>Tabulacja pionowa (vertical tab)</td>
+</tr>
+</tbody>
+</table>
+<p>Podstawowo, łańcuchy znaków zapisujemy w następujący sposób:</p>
+<pre class="hljs"><code><div>pytanie = <span class="hljs-string">'Czy łańcuchy znkaów możemy zapisywać tylko w taki sposób?'</span>
+odpowiedz = <span class="hljs-string">"Nie, łańcuchy znaków możemy pisać również w ten sposób"</span>
+</div></code></pre>
+<p>W Pythonie możemy wykonywać operacje na znakach takie jak:</p>
+<pre class="hljs"><code><div>lancuch = pytanie + <span class="hljs-string">"\n"</span> + odpowiedz 
+print(lancuch)
+</div></code></pre>
+<pre class="hljs"><code><div>Czy łańcuchy znkaów możemy zapisywać tylko w taki sposób?
+Nie, łańcuchy znaków możemy pisać również w ten sposób
+</div></code></pre>
+<pre class="hljs"><code><div>print((pytanie + <span class="hljs-string">"\n"</span>)*<span class="hljs-number">3</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>Czy łańcuchy znkaów możemy zapisywać tylko w taki sposób?
+Czy łańcuchy znkaów możemy zapisywać tylko w taki sposób?
+Czy łańcuchy znkaów możemy zapisywać tylko w taki sposób?
+
+</div></code></pre>
+<pre class="hljs"><code><div>tekst_specjalny = <span class="hljs-string">'Oto przejście do nowej linii\nTabulator\tApostrof\''</span>
+print(tekst_specjalny)
+</div></code></pre>
+<pre class="hljs"><code><div>Oto przejście do nowej linii
+Tabulator    Apostrof'
+</div></code></pre>
+<p>Dodatkowo, warto w tym miejscu zwrócić uwagę, że w zależności od wykorzystywanego formatu łańcucha znaku, możemy w jego wnętrzu stosować apostrof lub cudzysłów normalnie (bez <em>backslash</em>'a). Przykład:</p>
+<pre class="hljs"><code><div>lanuch_przez_apostrof = <span class="hljs-string">'"Cytat"'</span>
+lanuch_przez_cudzyslow = <span class="hljs-string">"'Cytat'"</span>
+print(lancuch_przez_apostrof + <span class="hljs-string">" "</span> + lancuch_przez_cudzyslow)
+</div></code></pre>
+<pre class="hljs"><code><div>&quot;Cytat&quot; 'Cytat'
+</div></code></pre>
+<p>Łańcuchy znaków możemy również specjalnie formatować (tzw. format string), co pozwala m.in. na wygodne wypisywanie zmiennych liczbowych w dobranych kontekście tekstowym. W tym celu, przy wypisywaniu, przed otwarciem łańucha, zastosujmy znak <code>f</code>. Przykład:</p>
+<pre class="hljs"><code><div>wynik_dzialania = <span class="hljs-number">2</span> * <span class="hljs-number">5</span>
+print(<span class="hljs-string">f'Wynik działania: <span class="hljs-subst">{wynik_dzialania}</span>'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>Wynik działania: 10
+</div></code></pre>
+<p><strong>Zmienne liczbowe</strong></p>
+<p>Zmienne liczbowe w Pythonie, podobnie jak w innych językach programowania, mogą przyjmować różne formy. Do najbardziej podstawowych typów należą liczby całkowite (int), reprezentujące liczby bez części dziesiętnej, na przykład <code>10</code>. Kolejnym typem są liczby zmiennoprzecinkowe (float), które mogą zawierać część dziesiętną, np. <code>20.5</code>. Python obsługuje także liczby zespolone (complex), które składają się z części rzeczywistej i urojonej, na przykład <code>5+3j</code>.</p>
+<pre class="hljs"><code><div>dzialanie = <span class="hljs-number">4</span> * <span class="hljs-number">7</span>
+oczekiwany_wynik = <span class="hljs-number">28</span>
+</div></code></pre>
+<p>Co ważne, w Pythonie, w przeciwieństwie do wielu popularnych języków programowania, nie musimy z góry określać typu danej zmiennej liczbowej. Język ten jest dynamicznie typowany, co oznacza, że typ zmiennej jest określany w trakcie wykonania programu, a nie w momencie jej deklaracji. Daje to programistom dużą elastyczność i pozwala na szybsze pisanie kodu, ponieważ nie trzeba martwić się o explicite określanie typów danych. Przykład:</p>
+<pre class="hljs"><code><div>calkowite = <span class="hljs-number">10</span>
+zmiennoprzecinkowe = <span class="hljs-number">20.5</span>
+zespolone = <span class="hljs-number">5</span> + <span class="hljs-number">3j</span>
+</div></code></pre>
+<p>Warto również zauważyć, że dynamiczne typowanie w Pythonie umożliwia łatwą zmianę typu zmiennej w trakcie działania programu. Na przykład, jeśli przypiszemy zmiennej, która wcześniej przechowywała liczbę całkowitą, wartość zmiennoprzecinkową, Python bez problemu poradzi sobie z tą zmianą.</p>
+<p><strong>Wartości puste</strong></p>
+<p>W Pythonie, aby reprezentować brak wartości lub niezdefiniowany stan, używa się słowa kluczowego <code>None</code>. Jest to specjalny typ danych, który jest często używany w sytuacjach, gdzie chcemy zainicjalizować zmienną, ale nie chcemy jej na razie przypisywać żadnej konkretnej wartości.</p>
+<pre class="hljs"><code><div>wartosc_pusta = <span class="hljs-literal">None</span>
+</div></code></pre>
+<p><strong>Zmienne logiczne (boolean)</strong></p>
+<p>Zmienne logiczne w Pythonie są wykorzystywane do reprezentowania wartości prawda/fałsz. Będą one istotne w konstrukcjach sterujących, takich jak instrukcje warunkowe czy pętle. Do reprezentowania wartości logicznych służą słowa kluczowe <code>True</code> (prawda) i <code>False</code> (fałsz).</p>
+<pre class="hljs"><code><div>czy_oczekiwany_wynik_prawidlowy = <span class="hljs-literal">True</span>
+czy_wartosc_pusta_jest_liczbowa = <span class="hljs-literal">False</span>
+</div></code></pre>
+<p><strong>Sprawdzanie i konwersja typów zmiennych</strong></p>
+<p>W Pythonie, ze względu na jego dynamiczną naturę, często pojawia się potrzeba sprawdzenia lub zmiany typu zmiennej. Możemy to zrobić przy wykorzystaniu funkcji <code>type()</code>, która zwraca typ obiektu:</p>
+<pre class="hljs"><code><div>liczbowa_calkowita = <span class="hljs-number">10</span>
+print(type(liczbowa_calkowita))
+</div></code></pre>
+<pre class="hljs"><code><div>&lt;class 'int'&gt;
+</div></code></pre>
+<pre class="hljs"><code><div>zmienna_logiczna = <span class="hljs-literal">True</span>
+print(type(zmienna_logiczna))
+</div></code></pre>
+<pre class="hljs"><code><div>&lt;class 'bool'&gt;
+</div></code></pre>
+<ul>
+<li>Konwersja do liczby całkowitej: Jeśli mamy zmienną z liczbą zmiennoprzecinkową lub łańcuchem znaków reprezentującym liczbę, a potrzebujemy liczby całkowitej, użyjemy funkcji <code>int()</code>:</li>
+</ul>
+<pre class="hljs"><code><div>x = <span class="hljs-number">10.5</span>
+y = <span class="hljs-string">"20"</span>
+x = int(x)
+y = int(y)
+print(<span class="hljs-string">f'x = <span class="hljs-subst">{x}</span>\ty = <span class="hljs-subst">{y}</span>'</span>)
+print(<span class="hljs-string">f'Oto typ zmiennej x: <span class="hljs-subst">{type(x)}</span>, a oto typ zmiennej y: <span class="hljs-subst">{type(y)}</span>.'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>x = 10    y = 20
+Oto typ zmiennej x: &lt;class 'int'&gt;, a oto typ zmiennej y: &lt;class 'int'&gt;.
+</div></code></pre>
+<ul>
+<li>Konwersja do liczby zmiennoprzecinkowej: Jeżeli chcemy zamienić liczbę całkowitą lub tekst na liczbę zmiennoprzecinkową, używamy funkcji <code>float()</code>:</li>
+</ul>
+<pre class="hljs"><code><div>a = <span class="hljs-number">15</span>
+b = <span class="hljs-string">"30.75"</span>
+a = float(a)
+b = float(b)
+print(<span class="hljs-string">f'a = <span class="hljs-subst">{a}</span>\tb = <span class="hljs-subst">{b}</span>'</span>)
+print(<span class="hljs-string">f'Oto typ zmiennej a: <span class="hljs-subst">{type(a)}</span>, a oto typ zmiennej b: <span class="hljs-subst">{type(b)}</span>.'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>a = 15.0    b = 30.75
+Oto typ zmiennej a: &lt;class 'float'&gt;, a oto typ zmiennej b: &lt;class 'float'&gt;.
+</div></code></pre>
+<ul>
+<li>Konwersja do łańcucha znaków: Aby zamienić liczbę całkowitą, zmiennoprzecinkową lub wartość logiczną na łańcuch znaków, używamy funkcji <code>str()</code>:</li>
+</ul>
+<pre class="hljs"><code><div>m = <span class="hljs-number">100</span>
+n = <span class="hljs-number">3.14</span>
+m = str(m)
+n = str(n)
+print(<span class="hljs-string">f'm = <span class="hljs-subst">{m}</span>\tn = <span class="hljs-subst">{n}</span>'</span>)
+print(<span class="hljs-string">f'Oto typ zmiennej m: <span class="hljs-subst">{type(m)}</span>, a oto typ zmiennej n: <span class="hljs-subst">{type(n)}</span>.'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>m = 100    n = 3.14
+Oto typ zmiennej m: &lt;class 'str'&gt;, a oto typ zmiennej n: &lt;class 'str'&gt;.
+</div></code></pre>
+<ul>
+<li>
+<p>Konwersja do wartości logicznej: Wartości liczbowe, łańcuchy znaków i inne typy danych można konwertować na wartości logiczne (typ boolean) przy pomocy funkcji <code>bool()</code>. Funkcja <code>bool()</code> zwraca <code>True</code> dla wartości, które są uznawane za prawdziwe, i <code>False</code> dla wartości uznawanych za fałszywe. Oto jakie wartości są konwertowane na <code>False</code>:</p>
+<ul>
+<li>Liczba 0</li>
+<li>Pusty łańcuch znaków: <code>&quot;&quot;</code> lub <code>''</code></li>
+<li>Pusta lista: <code>[]</code></li>
+<li>Pusty słownik: <code>{}</code></li>
+<li>Pusta krotka (tuple) <code>()</code></li>
+<li>Wartość <code>None</code></li>
+</ul>
+<p>Wszystkie inne wartości są konwertowane na <code>True</code>. Na przykład:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>a = <span class="hljs-number">1</span>
+print(bool(a))  
+</div></code></pre>
+<pre class="hljs"><code><div>True
+</div></code></pre>
+<pre class="hljs"><code><div>pusta_lista = []
+print(bool(pusta_lista))
+</div></code></pre>
+<pre class="hljs"><code><div>False
+</div></code></pre>
+<pre class="hljs"><code><div>napis = <span class="hljs-string">"Python"</span>
+print(bool(napis))
+</div></code></pre>
+<pre class="hljs"><code><div>True
+</div></code></pre>
+<p><strong>Komentarze</strong></p>
+<p>Komentarze w kodzie źródłowym są niezbędne, aby ułatwić zrozumienie działania programu zarówno dla autora, jak i dla innych programistów, którzy mogą z nim pracować. W Pythonie, aby dodać komentarz, używa się znaku <code>#</code>. Tekst po tym znaku w danej linii jest ignorowany przez interpreter Pythona.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Warto pozostawiać komentarze w kodzie:)</span>
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>
+<p>Zdefiniuj trzy zmienne: jedną typu string, jedną typu int i jedną typu float. Następnie wypisz ich typy przy pomocy funkcji <code>type()</code>.</p>
+</li>
+<li>
+<p>Stwórz dwa stringi, a następnie połącz je ze sobą w jeden string. Wypisz wynik.</p>
+</li>
+<li>
+<p>Mając dwie zmienne, <code>imie</code> i <code>wiek</code>, wypisz zdanie wykorzystując formatowanie stringów, które przy założeniu, że <code>imie</code> to &quot;Jan&quot; a <code>wiek</code> to 30, będzie wyglądało tak:</p>
+<pre class="hljs"><code><div>Podane dane:
+
+Imię:    &quot;Jan&quot;
+Wiek:    30 lat
+</div></code></pre>
+</li>
+<li>
+<p>Zdefiniuj zmienne typu float, które są blisko tej samej wartości całkowitej, ale z różnymi częściami dziesiętnymi (np. <code>9.4</code>, <code>9.5</code>, <code>9.6</code>). Następnie dokonaj ich konwersji na typ int i obserwuj, jak zachowuje się zaokrąglenie. Dodatkowo dla tych samych liczb sprawdź, jak działa funkcja zaokraglenia <code>round()</code>.</p>
+</li>
+</ol>
+<h1 id="4-operatory-a-id%22operatory%22a">4. Operatory <a id="operatory"></a></h1>
+<p>W Pythonie operatory są specjalnymi symbolami lub słowami kluczowymi, które są używane do wykonania operacji na zmiennych i wartościach. W tej sekcji omówimy różne kategorie operatorów oraz ich użycie.</p>
+<p><strong>Operatory Arytmetyczne</strong></p>
+<p>Operatory arytmetyczne służą do przeprowadzania podstawowych operacji matematycznych.</p>
+<pre class="hljs"><code><div>a = <span class="hljs-number">10</span>
+b = <span class="hljs-number">3</span>
+</div></code></pre>
+<h5 id="dodawanie">Dodawanie <code>+</code></h5>
+<p>Dodaje dwie wartości.</p>
+<pre class="hljs"><code><div>c = a + b
+print(<span class="hljs-string">"Dodawanie:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Dodawanie: 13
+</div></code></pre>
+<h5 id="odejmowanie">Odejmowanie <code>-</code></h5>
+<p>Odejmuje prawą wartość od lewej.</p>
+<pre class="hljs"><code><div>c = a - b
+print(<span class="hljs-string">"Odejmowanie:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Odejmowanie: 7
+</div></code></pre>
+<h5 id="mno%C5%BCenie">Mnożenie <code>*</code></h5>
+<p>Mnoży dwie wartości.</p>
+<pre class="hljs"><code><div>c = a * b
+print(<span class="hljs-string">"Mnożenie:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Mnożenie: 30
+</div></code></pre>
+<h5 id="dzielenie">Dzielenie <code>/</code></h5>
+<p>Dzieli lewą wartość przez prawą. Wynikiem jest liczba zmiennoprzecinkowa.</p>
+<pre class="hljs"><code><div>c = a / b
+print(<span class="hljs-string">"Dzielenie:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Dzielenie: 3.3333333333333335
+</div></code></pre>
+<h5 id="reszta-z-dzielenia">Reszta z Dzielenia <code>%</code></h5>
+<p>Zwraca resztę z dzielenia lewej wartości przez prawą.</p>
+<pre class="hljs"><code><div>c = a % b
+print(<span class="hljs-string">"Reszta z dzielenia:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Reszta z dzielenia: 1
+</div></code></pre>
+<h5 id="pot%C4%99gowanie">Potęgowanie <code>**</code></h5>
+<p>Podnosi lewą wartość do potęgi prawej wartości.</p>
+<pre class="hljs"><code><div>c = a ** b
+print(<span class="hljs-string">"Potęgowanie:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Potęgowanie: 1000
+</div></code></pre>
+<h5 id="dzielenie-ca%C5%82kowite">Dzielenie Całkowite <code>//</code></h5>
+<p>Dzieli lewą wartość przez prawą, ale zwraca tylko część całkowitą wyniku.</p>
+<pre class="hljs"><code><div>c = a // b
+print(<span class="hljs-string">"Dzielenie całkowite:"</span>, c)
+</div></code></pre>
+<pre class="hljs"><code><div>Dzielenie całkowite: 3
+</div></code></pre>
+<p><strong>Operatory Logiczne</strong></p>
+<p>Operatory logiczne służą do przeprowadzania operacji logicznych, takich jak AND, OR i NOT.</p>
+<pre class="hljs"><code><div>x = <span class="hljs-literal">True</span>
+y = <span class="hljs-literal">False</span>
+</div></code></pre>
+<h5 id="and-and">AND <code>and</code></h5>
+<p>Zwraca True tylko wtedy, gdy obie wartości są prawdziwe.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"AND:"</span>, x <span class="hljs-keyword">and</span> y)
+</div></code></pre>
+<pre class="hljs"><code><div>AND: False
+</div></code></pre>
+<h5 id="or-or">OR <code>or</code></h5>
+<p>Zwraca True, gdy przynajmniej jedna z wartości jest prawdziwa.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"OR:"</span>, x <span class="hljs-keyword">or</span> y)
+</div></code></pre>
+<pre class="hljs"><code><div>OR: True
+</div></code></pre>
+<h5 id="not-not">NOT <code>not</code></h5>
+<p>Zwraca przeciwną wartość logiczną.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"NOT x:"</span>, <span class="hljs-keyword">not</span> x)
+print(<span class="hljs-string">"NOT y:"</span>, <span class="hljs-keyword">not</span> y)
+</div></code></pre>
+<pre class="hljs"><code><div>NOT x: False
+NOT y: True
+</div></code></pre>
+<p><strong>Operatory Relacji</strong></p>
+<p>Operatory relacji służą do porównywania wartości.</p>
+<pre class="hljs"><code><div>a = <span class="hljs-number">10</span>
+b = <span class="hljs-number">20</span>
+c = <span class="hljs-string">"10"</span>
+d = <span class="hljs-string">"20"</span>
+</div></code></pre>
+<h5 id="r%C3%B3wno%C5%9B%C4%87">Równość <code>==</code></h5>
+<p>Sprawdza, czy dwie wartości są równe.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Równość liczb:"</span>, a == b)
+print(<span class="hljs-string">"Równość stringów:"</span>, c == d)
+print(<span class="hljs-string">"Równość liczby i (konwertowanego) stringa:"</span>, a == int(c))
+</div></code></pre>
+<pre class="hljs"><code><div>Równość liczb: False
+Równość stringów: False
+Równość liczby i (konwertowanego) stringa: True
+</div></code></pre>
+<h5 id="nier%C3%B3wno%C5%9B%C4%87">Nierówność <code>!=</code></h5>
+<p>Sprawdza, czy dwie wartości są różne.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Nierówność:"</span>, a != b)
+</div></code></pre>
+<pre class="hljs"><code><div>Nierówność: True
+</div></code></pre>
+<h5 id="mniejsze-ni%C5%BC">Mniejsze niż <code>&lt;</code></h5>
+<p>Sprawdza, czy lewa wartość jest mniejsza niż prawa.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Mniejsze niż:"</span>, a &lt; b)
+</div></code></pre>
+<pre class="hljs"><code><div>Mniejsze niż: True
+</div></code></pre>
+<h5 id="mniejsze-b%C4%85d%C5%BA-r%C3%B3wne">Mniejsze bądź równe <code>&lt;=</code></h5>
+<p>Sprawdza, czy lewa wartość jest mniejsza lub równa prawej.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Mniejsze bądź równe:"</span>, a &lt;= b)
+</div></code></pre>
+<pre class="hljs"><code><div>Mniejsze bądź równe: True
+</div></code></pre>
+<h5 id="wi%C4%99ksze-ni%C5%BC">Większe niż <code>&gt;</code></h5>
+<p>Sprawdza, czy lewa wartość jest większa niż prawa.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Większe niż:"</span>, a &gt; b)
+</div></code></pre>
+<pre class="hljs"><code><div>Większe niż: False
+</div></code></pre>
+<h5 id="wi%C4%99ksze-b%C4%85d%C5%BA-r%C3%B3wne">Większe bądź równe <code>&gt;=</code></h5>
+<p>Sprawdza, czy lewa wartość jest większa lub równa prawej.</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Większe bądź równe:"</span>, a &gt;= b)
+</div></code></pre>
+<pre class="hljs"><code><div>Większe bądź równe: False
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>
+<p>W dziedzinie cyberbezpieczeństwa, Systemy zarządzania informacjami i zdarzeniami z zakresu bezpieczeństwa (SIEM) są kluczowym elementem infrastruktury bezpieczeństwa. Dla zespołu odpowiedzialnego za bezpieczeństwo, ważne jest zrozumienie, jak koszty zakupu takich systemów wpływają na miesięczny budżet.</p>
+<p>Przyjmijmy, że nasz zespół rozważa zakup subskrypcji na system SIEM, który kosztuje 90 tys. dolarów amerykańskich rocznie. Twoim zadaniem jest obliczenie, ile realnie kwoty ubędzie z miesięcznego budżetu zespołu (w złotówkach), biorąc pod uwagę ten zakup.</p>
+<p>Przyjmujemy uproszczony kurs wymiany USD/PLN na poziomie 4.20.</p>
+</li>
+<li>
+<p>Pracując w dziale cyberbezpieczeństwa, często spotkasz się z sytuacjami, gdzie musisz analizować różne zagrożenia i podejmować decyzje na podstawie dostępnych danych. W tym zadaniu wykorzystamy operatory logiczne <code>and</code>, <code>or</code> oraz <code>not</code>, aby przeanalizować różne scenariusze zagrożeń.</p>
+<p>Przykładowe scenariusze:</p>
+<ul>
+<li><code>zagrozenie_1</code> oznacza, że system wykrył podejrzane połączenie sieciowe.</li>
+<li><code>zagrozenie_2</code> oznacza, że system wykrył podejrzane pliki na serwerze.</li>
+<li><code>zagrozenie_3</code> oznacza, że system wykrył nieautoryzowany dostęp do bazy danych.</li>
+</ul>
+<p>Przyjmij, że wykryto następujące wartości dla badanych zagrożeń:</p>
+<pre class="hljs"><code><div>zagrozenie_1 = <span class="hljs-literal">True</span>
+zagrozenie_2 = <span class="hljs-literal">False</span>
+zagrozenie_3 = <span class="hljs-literal">True</span>
+</div></code></pre>
+<p>Twoim zadaniem jest sprawdzenie:</p>
+<ul>
+<li>Czy istnieje jednocześnie podejrzane połączenie sieciowe i podejrzane pliki na serwerze?</li>
+<li>Czy istnieje podejrzane połączenie sieciowe lub nieautoryzowany dostęp do bazy danych?</li>
+<li>Czy nie ma żadnego zagrożenia związanego z podejrzanymi plikami na serwerze?</li>
+</ul>
+</li>
+<li>
+<p>Porównywanie stringów:</p>
+<ul>
+<li>
+<p>Przypisz wartość &quot;Python&quot; do zmiennej <code>str1</code> i wartość &quot;python&quot; do zmiennej <code>str2</code>. Sprawdź i wypisz wyniki porównania tych dwóch stringów pod kątem równości, nierówności, a także sprawdź porządek leksykograficzny. Sprawdź również, jak zachowają się te porównania po użyciu funkcji <code>lower()</code> na obu stringach.</p>
+</li>
+<li>
+<p>Nastepnie przypisz wartość &quot;apple&quot; do zmiennej <code>str3</code> i wartość &quot;banana&quot; do zmiennej <code>str4</code>. Sprawdź i wypisz wyniki porównania tych dwóch stringów pod kątem równości, nierówności, a także sprawdź porządek leksykograficzny.</p>
+</li>
+<li>
+<p>Sprawdź teraz, czy <code>str3</code> jest prefiksem dla <code>str4</code>. W tym celu skorzystaj z funkcji <code>startswith()</code>.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="5-%C5%9Brodowisko-pracy-a-id%22srodowisko-pracy%22a">5. Środowisko pracy <a id="srodowisko-pracy"></a></h1>
+<p>Dla efektywnego przeprowadzania projektów nieocenione okazują się specjalistyczne środowiska programistyczne, które usprawniają pracę i pomagają w organizacji kodu. Poniżej opisano dwa podstawowe narzędzia, które mogą znacznie ułatwić pracę z projektami programistycznymi.</p>
+<p><strong>Conda</strong></p>
+<p>Conda to system zarządzania pakietami, który ułatwia instalację, aktualizację i zarządzanie bibliotekami oraz środowiskami. Proces instalacji jest prosty i można go rozpocząć, odwiedzając jedną z poniższych stron:</p>
+<ul>
+<li><a href="https://docs.conda.io/projects/miniconda/en/latest/">Miniconda</a></li>
+<li><a href="https://www.anaconda.com/download/">Anaconda</a></li>
+</ul>
+<p>Po zainstalowaniu Conda, należy uruchomić ponownie terminal i zweryfikować instalację za pomocą polecenia <code>conda list</code>. Jeśli pojawią się problemy, warto załadować konfigurację poleceniem <code>source ~/.bashrc</code> lub <code>source ~/.zshrc</code> (w zależności od używanej wersji linuxs). W przypadku korzystania z Miniconda, może być również konieczna instalacja <code>ipykernel</code> za pomocą polecenia <code>conda install ipykernel</code>. Będzie to wymagane dla działania z Notebookami. Szczegóły tego rozwiązania zostaną omówione w dalszej części tutoriala.</p>
+<p>Przedstawione kroki mogą różnić się dla systemu Windows.</p>
+<p><strong>Visual Studio Code + Jupyter Notebook</strong></p>
+<p>Visual Studio Code to wszechstronne środowisko, które wspiera również Jupyter Notebooks. Aby rozpocząć:</p>
+<ol>
+<li>Odwiedź stronę <a href="https://code.visualstudio.com/docs/setup/linux">Visual Studio Code</a> i pobierz odpowiednią wersję dla Twojego procesora (zazwyczaj będzie to x64, ale na nowszych MacBookach może być arm64).</li>
+<li>Przenieś pobrany plik do wybranego katalogu i rozpakuj go za pomocą <code>tar -vxzf &lt;nazwa_pliku&gt;.tar.gz</code>.</li>
+<li>Zainstaluj za pomocą <code>sudo apt install ./&lt;nazwa_pliku&gt;.deb</code>.</li>
+<li>Po instalacji uruchom VS Code.</li>
+</ol>
+<p>Dalsze kroki to:</p>
+<ul>
+<li>Przejście przez przewodnik &quot;Getting Started&quot;.</li>
+<li>Instalacja rozszerzeń: Python i Jupyter przez zakładkę &quot;Extensions&quot;.</li>
+<li>Instalacja <code>ipykernel</code> oraz <code>pandas</code> za pomocą <code>pip</code> w terminalu.</li>
+</ul>
+<p>Aby rozpocząć pracę z Jupyter w VS Code:</p>
+<ol>
+<li>Utwórz nowy plik, wybierając opcję Python/Jupyter.</li>
+<li>Otwórz nowy terminal, wybierając opcję &quot;Terminal: New Terminal&quot;.</li>
+<li>Wybierz środowisko Python dla Jupyter, wskazując na <code>/bin/python</code> (dla wersji Python 3.11).</li>
+</ol>
+<p><strong>Uwaga:</strong> Domyślnie, dla dalszej części tutoriala zaleca się uruchamianie wszelkich stworzonych skrytpów i komponentów standardowo z plików, na razie pomijając Jupyter Notebook - ta technologia przyda się najbardziej w zadaniach analizy danych, których ten tutorial nie uwzględnia.</p>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>Wykorzystaj terminal w VS Code do wykonania podstawowych operacji.</li>
+<li>Przećwicz korzystanie z Jupyter Notebook, tworząc nowe komórki i uruchamiając przykładowy kod.</li>
+</ol>
+<h1 id="6-listy">6. Listy</h1>
+<p>Listy w Pythonie to jedne z najbardziej wszechstronnych typów danych. Służą do przechowywania uporządkowanych sekwencji elementów, które mogą być różnych typów.</p>
+<p><strong>Tworzenie List</strong>
+Listy tworzymy, umieszczając elementy w nawiasach kwadratowych <code>[]</code>, oddzielając je przecinkami.</p>
+<pre class="hljs"><code><div>lista = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+print(lista)
+</div></code></pre>
+<pre class="hljs"><code><div>[1, 2, 3, 4, 5]
+</div></code></pre>
+<p><strong>Dodawanie Elementów</strong>
+Do listy można dodawać nowe elementy za pomocą metody <code>append()</code>, co powoduje dodanie elementu na jej końcu.</p>
+<pre class="hljs"><code><div>lista.append(<span class="hljs-number">6</span>)  <span class="hljs-comment"># Dodawanie na końcu listy</span>
+print(lista)
+</div></code></pre>
+<pre class="hljs"><code><div>[1, 2, 3, 4, 5, 6]
+</div></code></pre>
+<p><strong>Indexowanie List</strong>
+Listy są indeksowane od zera, co oznacza, że pierwszy element znajduje się na pozycji 0.</p>
+<pre class="hljs"><code><div>print(lista[<span class="hljs-number">0</span>])  <span class="hljs-comment"># Pierwszy element</span>
+print(lista[<span class="hljs-number">-1</span>])  <span class="hljs-comment"># Ostatni element, indexowanie ujemne</span>
+</div></code></pre>
+<pre class="hljs"><code><div>1
+6
+</div></code></pre>
+<p><strong>Wycinanie List</strong>
+Możemy wycinać fragmenty listy, tworząc nową listę, która zawiera tylko wybrane elementy.</p>
+<pre class="hljs"><code><div>print(lista[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>])  <span class="hljs-comment"># Elementy od drugiego do czwartego</span>
+</div></code></pre>
+<pre class="hljs"><code><div>[2, 3, 4]
+</div></code></pre>
+<p><strong>Modyfikacja Elementów</strong>
+Możemy zmieniać wartości elementów w liście, odwołując się do nich przez ich indeks.</p>
+<pre class="hljs"><code><div>lista[<span class="hljs-number">0</span>] = <span class="hljs-number">10</span>  <span class="hljs-comment"># Zmiana wartości pierwszego elementu</span>
+print(lista)
+</div></code></pre>
+<pre class="hljs"><code><div>[10, 2, 3, 4, 5, 6]
+</div></code></pre>
+<p><strong>Metody List</strong>
+Listy w Pythonie mają wiele metod, które pozwalają na manipulację ich zawartością. Oto kilka przykładów:</p>
+<table>
+<thead>
+<tr>
+<th>Metoda</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>append()</code></td>
+<td>Dodaje element na końcu listy</td>
+</tr>
+<tr>
+<td><code>extend()</code></td>
+<td>Rozszerza listę o elementy z innej kolekcji</td>
+</tr>
+<tr>
+<td><code>insert()</code></td>
+<td>Wstawia element na wskazaną pozycję w liście</td>
+</tr>
+<tr>
+<td><code>remove()</code></td>
+<td>Usuwa pierwsze wystąpienie elementu z listy</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>Usuwa element na wskazanej pozycji w liście</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Usuwa wszystkie elementy z listy</td>
+</tr>
+<tr>
+<td><code>index()</code></td>
+<td>Zwraca indeks pierwszego wystąpienia elementu</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td>Zlicza wystąpienia elementu w liście</td>
+</tr>
+<tr>
+<td><code>sort()</code></td>
+<td>Sortuje listę</td>
+</tr>
+<tr>
+<td><code>reverse()</code></td>
+<td>Odwraca kolejność elementów w liście</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ograniczenia</strong>
+Listy w Pythonie nie mają praktycznie żadnych ograniczeń co do liczby elementów czy typów danych, które mogą przechowywać. Mogą zawierać dowolne typy danych, w tym inne listy, co pozwala na tworzenie list zagnieżdżonych (listy list).</p>
+<p><strong>Indeksowanie List</strong>
+Python oferuje zaawansowane techniki indeksowania, w tym indeksowanie ujemne oraz wycinanie (slicing):</p>
+<ul>
+<li>Indeksowanie ujemne pozwala na odwoływanie się do elementów od końca listy, gdzie <code>-1</code> oznacza ostatni element, <code>-2</code> przedostatni, itd.</li>
+<li>Wycinanie pozwala na uzyskanie nowej listy poprzez wybranie zakresu indeksów, gdzie <code>lista[start:stop:step]</code> zwróci nową listę z elementami od indeksu <code>start</code> do <code>stop</code> (wyłącznie), z krokiem <code>step</code>.</li>
+</ul>
+<pre class="hljs"><code><div>lista = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]
+print(lista[<span class="hljs-number">-3</span>:])  <span class="hljs-comment"># Wypisuje trzy ostatnie elementy</span>
+print(lista[::<span class="hljs-number">2</span>])  <span class="hljs-comment"># Wypisuje co drugi element listy</span>
+</div></code></pre>
+<pre class="hljs"><code><div>[7, 8, 9]
+[1, 3, 5, 7, 9]
+</div></code></pre>
+<h3 id="stringi-jako-listy">Stringi jako Listy</h3>
+<p>Stringi w Pythonie można traktować jak listy znaków, co oznacza, że można po nich iterować i uzyskiwać dostęp do poszczególnych znaków.</p>
+<p><strong>Iterowanie po Stringu</strong>
+Podobnie jak w listach, możemy iterować po stringach za pomocą pętli <code>for</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> znak <span class="hljs-keyword">in</span> <span class="hljs-string">"Python"</span>:
+    print(znak)
+</div></code></pre>
+<pre class="hljs"><code><div>P
+y
+t
+h
+o
+n
+</div></code></pre>
+<p><strong>Dostęp do Poszczególnych Znaków</strong>
+Tak samo jak w listach, możemy uzyskiwać dostęp do poszczególnych znaków w stringu.</p>
+<pre class="hljs"><code><div>napis = <span class="hljs-string">"Python"</span>
+print(napis[<span class="hljs-number">0</span>])  <span class="hljs-comment"># Pierwszy znak</span>
+print(napis[<span class="hljs-number">-1</span>])  <span class="hljs-comment"># Ostatni znak, indexowanie ujemne</span>
+</div></code></pre>
+<pre class="hljs"><code><div>P
+n
+</div></code></pre>
+<p><strong>Wycinki Stringów</strong>
+Możemy wycinać fragmenty stringów, tworząc nowe stringi.</p>
+<pre class="hljs"><code><div>print(napis[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>])  <span class="hljs-comment"># Znaki od drugiego do czwartego</span>
+</div></code></pre>
+<pre class="hljs"><code><div>yth
+</div></code></pre>
+<p><strong>Odwracanie Stringów</strong>
+Używając wycinków, możemy odwrócić string. Działa to, ponieważ wycinki pozwalają nam określić kierunek iteracji po stringu.</p>
+<pre class="hljs"><code><div>print(napis[::<span class="hljs-number">-1</span>])  <span class="hljs-comment"># Odwrócony string</span>
+</div></code></pre>
+<pre class="hljs"><code><div>nohtyP
+</div></code></pre>
+<h3 id="s%C5%82owniki">Słowniki</h3>
+<p>Słowniki to struktury danych przechowujące pary klucz-wartość. Poniżej lista najczęściej wykorzystywaych dla nich metod:</p>
+<table>
+<thead>
+<tr>
+<th>Metoda</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get(key)</code></td>
+<td>Zwraca wartość dla klucza; <code>None</code> jeśli nie istnieje</td>
+</tr>
+<tr>
+<td><code>items()</code></td>
+<td>Zwraca parę klucz-wartość jako nowe widoki słownika</td>
+</tr>
+<tr>
+<td><code>keys()</code></td>
+<td>Zwraca widok kluczy w słowniku</td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Zwraca widok wartości w słowniku</td>
+</tr>
+<tr>
+<td><code>pop(key)</code></td>
+<td>Usuwa klucz i zwraca wartość; błąd jeśli nie istnieje</td>
+</tr>
+<tr>
+<td><code>popitem()</code></td>
+<td>Usuwa i zwraca parę (klucz, wartość) jako krotkę</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Usuwa wszystkie elementy ze słownika</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tworzenie Słownika</strong>
+Słowniki tworzymy, umieszczając pary klucz-wartość w nawiasach klamrowych <code>{}</code>, oddzielając je przecinkami.</p>
+<pre class="hljs"><code><div>slownik = {<span class="hljs-string">'klucz1'</span>: <span class="hljs-string">'wartosc1'</span>, <span class="hljs-string">'klucz2'</span>: <span class="hljs-string">'wartosc2'</span>}
+print(slownik)
+</div></code></pre>
+<pre class="hljs"><code><div>{'klucz1': 'wartosc1', 'klucz2': 'wartosc2'}
+</div></code></pre>
+<p><strong>Dodawanie Elementów</strong>
+Możemy dodawać nowe pary klucz-wartość do słownika.</p>
+<pre class="hljs"><code><div>slownik[<span class="hljs-string">'klucz3'</span>] = <span class="hljs-string">'wartosc3'</span>
+print(slownik)
+</div></code></pre>
+<pre class="hljs"><code><div>{'klucz1': 'wartosc1', 'klucz2': 'wartosc2', 'klucz3': 'wartosc3'}
+</div></code></pre>
+<p><strong>Dostęp do Elementów</strong>
+Możemy uzyskiwać dostęp do wartości w słowniku, używając kluczy.</p>
+<pre class="hljs"><code><div>print(slownik[<span class="hljs-string">'klucz1'</span>])
+</div></code></pre>
+<pre class="hljs"><code><div>wartosc1
+</div></code></pre>
+<p><strong>Modyfikacja Elementów</strong>
+Możemy zmieniać wartości przypisane do kluczy w słowniku.</p>
+<pre class="hljs"><code><div>slownik[<span class="hljs-string">'klucz1'</span>] = <span class="hljs-string">'nowa_wartosc'</span>
+print(slownik)
+</div></code></pre>
+<pre class="hljs"><code><div>{'klucz1': 'nowa_wartosc', 'klucz2': 'wartosc2', 'klucz3': 'wartosc3'}
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do Wykonania</h2>
+<ol>
+<li>Jesteś administratorem systemu i masz za zadanie zaktualizować listę protokołów sieciowych używanych w firmie. Obecna lista protokołów zawiera <code>[&quot;HTTP&quot;, &quot;FTP&quot;, &quot;SSH&quot;, &quot;TELNET&quot;]</code>. Twoim zadaniem jest usunięcie przestarzałego protokołu &quot;TELNET&quot;, dodanie bezpieczniejszego &quot;HTTPS&quot;. Na koniec, wyświetl dwa najnowsze protokoły dodane do listy.</li>
+<li>W działaniach związanych z cyberbezpieczeństwem ważne jest, aby hasła były skomplikowane i trudne do odgadnięcia. Posiadasz hasło <code>&quot;aB3$7@xZ&quot;</code>, które chcesz zbadać pod kątem złożoności. Twoim zadaniem jest sprawdzenie, które znaki są alfanumeryczne, a następnie przekształcenie hasła na format, w którym wszystkie litery są wielkie, aby zasymulować wymóg użycia wielkich liter w hasłach. Na koniec odwróć kolejność znaków, aby zobaczyć, jak hasło wyglądałoby w mniej przewidywalnej formie.</li>
+<li>Masz dany słownik raport, który zawiera informacje o stanie zabezpieczeń różnych usług sieciowych. Twoim zadaniem jest zaktualizowanie tego słownika, aby każda usługa była zmapowana na status &quot;bezpieczny&quot; lub &quot;niebezpieczny&quot;. Po zaktualizowaniu słownika, wyświetl status bezpieczeństwa dla usługi &quot;FTP&quot; oraz &quot;SSH&quot;. W słowniku raport powinny znaleźć się również usługi &quot;SMTP&quot;, &quot;DNS&quot; oraz &quot;HTTPS&quot;, gdzie &quot;SMTP&quot; i &quot;DNS&quot; powinny mieć przypisany status &quot;niebezpieczny&quot;, a &quot;HTTPS&quot; status &quot;bezpieczny&quot;.</li>
+</ol>
+<h1 id="7-instrukcje-warunkowe-p%C4%99tle-a-id%22instrukcje-warunkowe-petle%22a">7. Instrukcje Warunkowe, Pętle <a id="instrukcje-warunkowe-petle"></a></h1>
+<h2 id="instrukcje-warunkowe">Instrukcje Warunkowe</h2>
+<p>Instrukcje warunkowe służą do podejmowania decyzji w programie w zależności od spełnienia określonych warunków.</p>
+<p><strong>Po co są instrukcje warunkowe?</strong>
+Instrukcje warunkowe pozwalają na wykonywanie różnych fragmentów kodu w zależności od tego, czy dany warunek jest prawdziwy (True) czy fałszywy (False). To podstawowy sposób na kontrolowanie przepływu programu.</p>
+<p><strong>if</strong>
+Instrukcja <code>if</code> sprawdza warunek, a jeśli jest spełniony, wykonuje zagnieżdżony blok kodu.</p>
+<pre class="hljs"><code><div>x = <span class="hljs-number">10</span>
+<span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">5</span>:
+    print(<span class="hljs-string">"x jest większe od 5"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>x jest większe od 5
+</div></code></pre>
+<p><strong>if-else</strong>
+Instrukcja <code>else</code> pozwala na wykonanie alternatywnego bloku kodu, gdy warunek w <code>if</code> nie jest spełniony.</p>
+<pre class="hljs"><code><div>y = <span class="hljs-number">3</span>
+<span class="hljs-keyword">if</span> y &gt; <span class="hljs-number">5</span>:
+    print(<span class="hljs-string">"y jest większe od 5"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"y jest mniejsze lub równe 5"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>y jest mniejsze lub równe 5
+</div></code></pre>
+<p><strong>if-elif-else</strong>
+Instrukcja <code>elif</code> umożliwia sprawdzenie wielu warunków przed przejściem do bloku <code>else</code>.</p>
+<pre class="hljs"><code><div>z = <span class="hljs-number">5</span>
+<span class="hljs-keyword">if</span> z &gt; <span class="hljs-number">5</span>:
+    print(<span class="hljs-string">"z jest większe od 5"</span>)
+<span class="hljs-keyword">elif</span> z == <span class="hljs-number">5</span>:
+    print(<span class="hljs-string">"z jest równe 5"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"z jest mniejsze od 5"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>z jest równe 5
+</div></code></pre>
+<p><strong>Instrukcje z wieloma warunkami</strong>
+Warunki można łączyć przy użyciu operatorów logicznych <code>and</code>, <code>or</code> oraz negować używając <code>not</code>. Istnieją również ich odpowiedniki w postaci symboli: <code>&amp;</code> dla <code>and</code>, <code>|</code> dla <code>or</code> oraz <code>!</code> dla <code>not</code>, choć ich użycie wymaga specjalnej uwagi, szczególnie w kontekście operatorów bitowych.</p>
+<pre class="hljs"><code><div>x = <span class="hljs-number">10</span>
+y = <span class="hljs-number">5</span>
+<span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">and</span> y &lt; <span class="hljs-number">10</span>:  <span class="hljs-comment"># Możemy też napisać: if x &gt; 5 &amp; y &lt; 10</span>
+    print(<span class="hljs-string">"x jest większe od 5 i y jest mniejsze od 10"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>x jest większe od 5 i y jest mniejsze od 10
+</div></code></pre>
+<p>Operator <code>and</code> wymaga, aby oba warunki były prawdziwe. Aby wykonać blok kodu, gdy przynajmniej jeden z warunków jest prawdziwy, używamy operatora <code>or</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">or</span> y &gt; <span class="hljs-number">10</span>:  <span class="hljs-comment"># Możemy też napisać: if x &gt; 5 | y &gt; 10</span>
+    print(<span class="hljs-string">"Przynajmniej jeden z warunków jest prawdziwy"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>Przynajmniej jeden z warunków jest prawdziwy
+</div></code></pre>
+<p>Operator <code>not</code> służy do odwrócenia wyniku warunku.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (x &lt; <span class="hljs-number">5</span>):  <span class="hljs-comment"># Możemy też napisać: if !(x &lt; 5)</span>
+    print(<span class="hljs-string">"x nie jest mniejsze od 5"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>x nie jest mniejsze od 5
+</div></code></pre>
+<p><strong>Połączenie warunków i priorytety</strong>
+Operatory logiczne w Pythonie mają swoje priorytety. <code>not</code> ma wyższy priorytet niż <code>and</code>, który ma wyższy priorytet niż <code>or</code>. Możemy użyć nawiasów, aby zmienić kolejność wykonywania operacji.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">or</span> y &gt; <span class="hljs-number">5</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> (x == <span class="hljs-number">10</span> <span class="hljs-keyword">and</span> y == <span class="hljs-number">10</span>):
+    print(<span class="hljs-string">"Złożony warunek spełniony"</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>Złożony warunek spełniony
+</div></code></pre>
+<p>Zaleca się unikanie zbyt skomplikowanych warunków w jednym wyrażeniu, aby kod był czytelny i łatwy w utrzymaniu.</p>
+<h2 id="p%C4%99tle">Pętle</h2>
+<p>Pętle umożliwiają wielokrotne wykonanie określonego bloku kodu.</p>
+<p><strong>Pętla while</strong>
+Pętla <code>while</code> wykonuje blok kodu, dopóki podany warunek jest prawdziwy.</p>
+<pre class="hljs"><code><div>i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">5</span>:
+    print(i)
+    i += <span class="hljs-number">1</span>
+</div></code></pre>
+<pre class="hljs"><code><div>0
+1
+2
+3
+4
+</div></code></pre>
+<p><strong>Pętla for</strong>
+Pętla <code>for</code> służy do iterowania po sekwencji (np. liście lub zakresie).</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):
+    print(j)
+</div></code></pre>
+<pre class="hljs"><code><div>0
+1
+2
+3
+4
+</div></code></pre>
+<p><strong>Pętla for-each</strong>
+Pętla <code>for-each</code> pozwala na iterowanie bezpośrednio po elementach sekwencji.</p>
+<pre class="hljs"><code><div>lista = [<span class="hljs-number">10</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> lista:
+    print(element)
+</div></code></pre>
+<pre class="hljs"><code><div>10
+2
+3
+4
+5
+6
+</div></code></pre>
+<p><strong>Funkcja range()</strong>
+Funkcja <code>range</code> pozwala na generowanie sekwencji liczb. Może być używana z różnymi parametrami:</p>
+<ul>
+<li><code>range(stop)</code>: generuje liczby od 0 do <code>stop - 1</code></li>
+<li><code>range(start, stop)</code>: generuje liczby od <code>start</code> do <code>stop - 1</code></li>
+<li><code>range(start, stop, step)</code>: generuje liczby od <code>start</code> do <code>stop - 1</code> z krokiem <code>step</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>):
+    print(num)
+</div></code></pre>
+<pre class="hljs"><code><div>2
+4
+6
+8
+</div></code></pre>
+<p><strong>Kontrola przepływu pętli: break i pass</strong>
+Instrukcje <code>break</code> i <code>pass</code> służą do kontroli przepływu wewnątrz pętli:</p>
+<ul>
+<li><code>break</code> natychmiast kończy najbliższą pętlę, w której się znajduje.</li>
+<li><code>pass</code> nie robi nic, jest jak placeholder, pozwalający na zapisanie struktury kodu bez wypełniania bloku kodem.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> <span class="hljs-string">"string"</span>:
+    <span class="hljs-keyword">if</span> val == <span class="hljs-string">"i"</span>:
+        <span class="hljs-keyword">pass</span>
+    print(val)
+</div></code></pre>
+<pre class="hljs"><code><div>s
+t
+r
+i
+n
+g
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> <span class="hljs-string">"string"</span>:
+    <span class="hljs-keyword">if</span> val == <span class="hljs-string">"i"</span>:
+        <span class="hljs-keyword">break</span>
+    print(val)
+</div></code></pre>
+<pre class="hljs"><code><div>s
+t
+r
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do Wykonania</h2>
+<ol>
+<li>
+<p>Napisz program, który przyjmie liczbę od użytkownika i wypisze, czy liczba ta jest parzysta czy nieparzysta, czy jest dodatnia, ujemna, czy równa zero. Użyj operatorów logicznych do sprawdzenia warunków oraz pętli do weryfikacji czynników liczby pierwszej. W celu przyjęcia danych od użytkiownika należy wykorszystać wbdowaną funkcję <code>input()</code>. Przykład wykorzystania funkcji <code>input()</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Prośba o wpisanie imienia użytkownika</span>
+imie = input(<span class="hljs-string">"Jak masz na imię? "</span>)
+
+<span class="hljs-comment"># Wypisanie powitania z imieniem podanym przez użytkownika</span>
+print(<span class="hljs-string">f"Cześć, <span class="hljs-subst">{imie}</span>! Miło Cię poznać."</span>)
+
+<span class="hljs-comment"># Prośba o wpisanie wieku użytkownika</span>
+wiek = input(<span class="hljs-string">"Ile masz lat? "</span>)
+
+<span class="hljs-comment"># Konwersja wieku z tekstu na liczbę całkowitą</span>
+wiek = int(wiek)
+
+<span class="hljs-comment"># Wypisanie informacji zwrotnej z wiekiem użytkownika</span>
+print(<span class="hljs-string">f"Okej, masz <span class="hljs-subst">{wiek}</span> lat. To znaczy, że urodziłeś się w roku <span class="hljs-subst">{<span class="hljs-number">2023</span> - wiek}</span>."</span>)
+</div></code></pre>
+</li>
+<li>
+<p>Napisz program w języku Python, który symuluje proces sprawdzania stanu portów na serwerze. Program powinien przejrzeć porty od 1 do 50 i dla każdego z nich wykonać następujące czynności:</p>
+<ul>
+<li>Jeżeli numer portu jest <strong>parzysty</strong>, uznaj port za &quot;zamknięty&quot; i wydrukuj informację o tym.</li>
+<li>Jeżeli numer portu jest <strong>nieparzysty</strong>, uznaj port za &quot;otwarty&quot; i wydrukuj informację.</li>
+<li>Gdy program natrafi na port o numerze <strong>22</strong> (SSH), powinien wydrukować komunikat &quot;Bezpieczny port SSH znaleziony, kontynuuję skanowanie...&quot; i kontynuować działanie bez przerywania pętli.</li>
+<li>Jeśli program dojdzie do portu o numerze <strong>50</strong>, powinien wydrukować &quot;Zakończono skanowanie portów&quot; i zakończyć działanie programu.</li>
+</ul>
+<p>Wykorzystaj pętlę <code>for</code> i funkcję <code>range()</code>.</p>
+</li>
+</ol>
+<h1 id="8-funkcje-a-id%22funkcje%22a">8. Funkcje <a id="funkcje"></a></h1>
+<p>Funkcje w Pythonie pozwalają na zdefiniowanie bloku kodu, który wykonuje określone akcje, produkuje wartości i opcjonalnie zwraca jedną lub więcej z tych wartości. Dzięki funkcjom, możemy ponownie używać kodu i pracować z naszymi danymi bardziej efektywnie, bez konieczności ponownego wynajdywania koła.</p>
+<p><strong>Definiowanie Funkcji</strong></p>
+<p>Aby zdefiniować funkcję, używamy słowa kluczowego <code>def</code>, po którym następuje nazwa funkcji, nawiasy (które mogą zawierać parametry) oraz dwukropek. Ciało funkcji zaczyna się w nowej linii i jest wcięte.</p>
+<p><strong>Prosta Funkcja</strong></p>
+<p>Poniżej znajduje się przykład prostej funkcji, która zwraca wartość parametru powiększoną o jeden.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dodaj_jeden</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> x + <span class="hljs-number">1</span>
+</div></code></pre>
+<p>Aby użyć tej funkcji, wywołujemy ją, podając argument w nawiasach:</p>
+<pre class="hljs"><code><div>wynik = dodaj_jeden(<span class="hljs-number">5</span>)
+print(wynik)
+</div></code></pre>
+<pre class="hljs"><code><div>6
+</div></code></pre>
+<p><strong>Parametry Funkcji</strong></p>
+<p>Funkcje mogą przyjmować parametry, które są wartościami przekazywanymi do funkcji w celu przetworzenia. Parametry te mogą być dowolnego typu.</p>
+<p>Przykład funkcji przyjmującej dwa parametry:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dodaj</span><span class="hljs-params">(x, y)</span>:</span>
+    <span class="hljs-keyword">return</span> x + y
+</div></code></pre>
+<p>Wywołanie funkcji z dwoma argumentami:</p>
+<pre class="hljs"><code><div>wynik = dodaj(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+print(wynik)
+</div></code></pre>
+<pre class="hljs"><code><div>5
+</div></code></pre>
+<p><strong>Zwracanie Wartości z Funkcji</strong></p>
+<p>Słowo kluczowe <code>return</code> służy do zwracania wartości z funkcji. Funkcja zwraca sterowanie do miejsca, z którego została wywołana, a także opcjonalnie zwraca wartość.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pomnoz_przez_dwa</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">2</span>
+</div></code></pre>
+<p>Przykład użycia funkcji:</p>
+<pre class="hljs"><code><div>wynik = pomnoz_przez_dwa(<span class="hljs-number">4</span>)
+print(wynik) 
+</div></code></pre>
+<pre class="hljs"><code><div>8
+</div></code></pre>
+<p><strong>Funkcje Jako Argumenty Innych Funkcji</strong></p>
+<p>Funkcje w Pythonie są obiektami pierwszej klasy, co oznacza, że możemy przekazywać je jako argumenty do innych funkcji, zwracać je z funkcji, przypisywać je do zmiennych i przechowywać je w innych strukturach danych.</p>
+<p>Przykład funkcji, która przyjmuje inną funkcję jako argument:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wykonaj_dzialanie</span><span class="hljs-params">(funkcja, argument)</span>:</span>
+    <span class="hljs-keyword">return</span> funkcja(argument)
+</div></code></pre>
+<p>Użycie tej funkcji z funkcją <code>dodaj_jeden</code>:</p>
+<pre class="hljs"><code><div>wynik = wykonaj_dzialanie(dodaj_jeden, <span class="hljs-number">5</span>)
+print(wynik)
+</div></code></pre>
+<pre class="hljs"><code><div>6
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do Wykonania</h2>
+<ol>
+<li>
+<p>Napisz funkcję <code>sprawdz_silne_haslo</code>, która przyjmuje hasło jako argument i zwraca <code>True</code>, jeśli hasło spełnia następujące kryteria dla silnego hasła:</p>
+<ul>
+<li>ma co najmniej 8 znaków długości,</li>
+<li>zawiera co najmniej jedną cyfrę,</li>
+<li>zawiera co najmniej jedną wielką literę.</li>
+</ul>
+<p>Wykorzystaj funkcje <code>len()</code>, <code>any()</code> oraz metody <code>isdigit()</code> i <code>isupper()</code> do sprawdzenia tych warunków w hasle.</p>
+</li>
+<li>
+<p>Napisz funkcję <code>rejestruj_aktywnosc</code>, która przyjmuje nazwę użytkownika oraz dowolną liczbę czasów logowania (reprezentowanych jako stringi z czasem) i drukuje komunikat z najwcześniejszym i najpóźniejszym czasem logowania dla danego użytkownika. Wykorzystaj funkcje <code>min()</code> i <code>max()</code> do znalezienia odpowiednich czasów.</p>
+<p>Użyj formatowania stringów, aby wygenerować czytelny komunikat, na przykład:
+<code>&quot;Użytkownik: [nazwa], Pierwsze logowanie: [czas], Ostatnie logowanie: [czas]&quot;.</code></p>
+<p><strong>Uwaga</strong>: Godziny w formie stringa, takie jak &quot;08:00&quot; czy &quot;12:00&quot;, są porównywalne w Pythonie, ponieważ porównanie stringów odbywa się alfabetycznie, znak po znaku od lewej do prawej. W kontekście godzin w formacie HH:MM, jeśli stringi są w tym samym formacie, ich porównanie alfabetyczne (leksykograficzne) jest równoważne porównaniu czasowemu pod warunkiem, że oba stringi mają tę samą długość i są poprawnie sformatowane.</p>
+</li>
+</ol>
+<h1 id="9-klasy-a-id%22klasy%22a">9. Klasy <a id="klasy"></a></h1>
+<p>Programowanie obiektowe to paradygmat programowania, który wykorzystuje &quot;obiekty&quot; – struktury danych składające się z pól danych (nazywanych atrybutami) i procedur, znanych jako metody. W Pythonie, klasy są podstawowym narzędziem do implementacji struktur danych i zachowań obiektów, będąc fundamentem dla programowania obiektowego.</p>
+<p><strong>Czym są Klasy?</strong></p>
+<p>Klasa w Pythonie to rodzaj &quot;przepisu&quot; lub &quot;szablonu&quot;, który definiuje jak będą tworzone obiekty (instancje klasy). Klasy opisują stan (atrybuty) i zachowanie (metody), które będą współdzielone przez wszystkie instancje.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NazwaKlasy</span>:</span>
+    <span class="hljs-comment"># definicje zmiennych i metod</span>
+</div></code></pre>
+<p><strong>Konstruktor Klasy</strong></p>
+<p>Konstruktor to specjalna metoda w klasie, która jest automatycznie wywoływana, kiedy tworzymy nowy obiekt tej klasy. W Pythonie, konstruktor zdefiniowany jest przez metodę <code>__init__</code>, która inicjalizuje nową instancję klasy.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrzykladowaKlasa</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, param1, param2)</span>:</span>
+        self.atrybut1 = param1
+        self.atrybut2 = param2
+</div></code></pre>
+<p><strong>Metody Klasy</strong></p>
+<p>Metody to funkcje zdefiniowane wewnątrz klasy, które określają zachowania i akcje, które może wykonać instancja klasy. Są one wywoływane na instancjach obiektów i często działają na atrybutach tych obiektów.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrzykladowaKlasa</span>:</span>
+    <span class="hljs-comment"># Konstruktor klasy</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, param1, param2)</span>:</span>
+        self.atrybut1 = param1
+        self.atrybut2 = param2
+    
+    <span class="hljs-comment"># Metoda klasy</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">metoda_klasy</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">f"Atrybut1: <span class="hljs-subst">{self.atrybut1}</span>, Atrybut2: <span class="hljs-subst">{self.atrybut2}</span>"</span>)
+</div></code></pre>
+<p><strong>Tworzenie Obiektów</strong></p>
+<p>Tworzenie obiektu, zwane także instancjacją, polega na wywołaniu klasy jako funkcji, przekazując do niej argumenty wymagane przez konstruktor.</p>
+<pre class="hljs"><code><div>obiekt = PrzykladowaKlasa(<span class="hljs-string">"wartość1"</span>, <span class="hljs-string">"wartość2"</span>)
+</div></code></pre>
+<p><strong>Dostęp do Atrybutów i Metod</strong></p>
+<p>Po stworzeniu obiektu, do jego atrybutów i metod dostęp uzyskujemy za pomocą operatora kropki <code>.</code>.</p>
+<pre class="hljs"><code><div>print(obiekt.atrybut1)  <span class="hljs-comment"># Wypisze wartość atrybut1</span>
+obiekt.metoda_klasy()   <span class="hljs-comment"># Wywoła metodę klasy i wypisze wartości atrybutów</span>
+</div></code></pre>
+<p><strong>__main__</strong></p>
+<p>W Pythonie, blok <code>if __name__ == &quot;__main__&quot;:</code> jest używany do wskazania, że kod powinien być uruchomiony tylko wtedy, gdy skrypt jest wykonywany bezpośrednio, a nie importowany jako moduł do innego skryptu. Zmienna <code>__name__</code> w Pythonie jest specjalną wbudowaną zmienną, która przyjmuje wartość <code>&quot;__main__&quot;</code> w skrypcie, który jest głównym programem.</p>
+<h3 id="przyk%C5%82ad-wykorzystania">Przykład wykorzystania:</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funkcja</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"Funkcja została uruchomiona!"</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funkcja_glowna</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"Skrypt uruchomiony bezpośrednio"</span>)
+    funkcja()
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    funkcja_glowna()
+</div></code></pre>
+<p>W powyższym skrypcie, jeśli uruchomisz ten plik bezpośrednio, na przykład przez wywołanie <code>python skrypt.py</code>, zobaczysz oba wydruki:</p>
+<pre class="hljs"><code><div>Skrypt uruchomiony bezpośrednio
+Funkcja została uruchomiona!
+</div></code></pre>
+<p>Ale jeśli ten sam plik zostanie zaimportowany z innego skryptu Pythona za pomocą <code>import skrypt</code>, nie zostanie wydrukowane nic z powyższego, ponieważ blok <code>if __name__ == &quot;__main__&quot;:</code> nie zostanie wykonany. Funkcja <code>main()</code> zostanie uruchomiona tylko wtedy, gdy skrypt jest głównym programem.</p>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>
+<p>Stwórz klasę Firewall, która będzie przechowywać zasady (reguły) dotyczące ruchu sieciowego i oceniać, czy próba połączenia jest dozwolona, czy zablokowana. Klasa powinna mieć następujące metody:</p>
+<ul>
+<li>__init__(self): inicjalizacja listy zasad (każda zasada to słownik z kluczami: 'ip', 'port' i 'akcja'),</li>
+<li>dodaj_zasade(self, ip, port, akcja): dodaje nową zasadę do firewalla,</li>
+<li>sprawdz_polaczenie(self, ip, port): zwraca True, jeśli połączenie jest dozwolone, False jeśli zablokowane, na podstawie zasad.</li>
+</ul>
+</li>
+<li>
+<p>Zaprojektuj klasę Uzytkownik, która będzie zarządzać informacjami o użytkownikach w systemie bezpieczeństwa. Klasa powinna posiadać:</p>
+<ul>
+<li>Atrybuty instancji: login, haslo, email, poziom_dostepu (gdzie poziom dostępu określa uprawnienia użytkownika w systemie, np. 'admin', 'user', 'guest').</li>
+<li>Metodę __init__(self, login, haslo, email, poziom_dostepu): inicjalizacja nowego użytkownika z podanymi atrybutami,</li>
+<li>Metodę zmien_haslo(self, stare_haslo, nowe_haslo): metoda pozwala zmienić hasło użytkownika, ale tylko jeśli stare haslo jest poprawne,</li>
+<li>Metodę __str__(self): która zwraca informacje o użytkowniku (bez hasła) w czytelnej formie,</li>
+<li>Metodę zresetuj_haslo(self): resetuje hasło do domyślnej wartości, np. &quot;Password123&quot;, i zwraca informację o zmianie.</li>
+</ul>
+</li>
+</ol>
+<h1 id="10-biblioteki-i-%C5%9Brodowiska-wirtualne-a-id%22biblioteki-i-srodowiska-wirtualne%22a">10. Biblioteki i środowiska wirtualne <a id="biblioteki-i-srodowiska-wirtualne"></a></h1>
+<p><strong>Importowanie Bibliotek w Pythonie</strong></p>
+<p>W Pythonie, aby korzystać z funkcji dostarczanych przez bibliotekę, najpierw musimy ją zaimportować za pomocą instrukcji <code>import</code>. Na przykład:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> datetime
+</div></code></pre>
+<p><code>datetime</code> to moduł wbudowany w Pythonie, który dostarcza funkcje do pracy z datami i czasem. Pozwala na tworzenie obiektów reprezentujących datę, czas, a nawet kombinację obu.</p>
+<p>Przykład użycia:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime
+
+aktualny_czas = datetime.now()
+print(aktualny_czas)
+</div></code></pre>
+<h3 id="zarz%C4%85dzanie-pakietami-z-pip">Zarządzanie pakietami z <code>pip</code></h3>
+<p>Python Package Index (PyPI) to repozytorium oprogramowania dla języka programowania Python. <code>pip</code> jest narzędziem, które pozwala instalować i zarządzać pakietami z tego repozytorium.</p>
+<p>Aby zainstalować bibliotekę, użyj:</p>
+<pre class="hljs"><code><div>pip install nazwa_pakietu
+</div></code></pre>
+<p>Jeśli chcesz zainstalować konkretną wersję, zrób to tak:</p>
+<pre class="hljs"><code><div>pip install nazwa_pakietu==wersja
+</div></code></pre>
+<p>Aby zaktualizować pakiet, użyj:</p>
+<pre class="hljs"><code><div>pip install --upgrade nazwa_pakietu
+</div></code></pre>
+<p>Możesz też odinstalować pakiet za pomocą:</p>
+<pre class="hljs"><code><div>pip uninstall nazwa_pakietu
+</div></code></pre>
+<p>Aby zobaczyć listę zainstalowanych pakietów:</p>
+<pre class="hljs"><code><div>pip list
+</div></code></pre>
+<p><strong><code>requirements.txt</code></strong></p>
+<p>Plik <code>requirements.txt</code> jest standardem dla Pythona, który pozwala na śledzenie zależności projektu. Aby wygenerować ten plik, użyj polecenia <code>freeze</code>:</p>
+<pre class="hljs"><code><div>pip freeze &gt; requirements.txt
+</div></code></pre>
+<p>To polecenie zapisze listę wszystkich zainstalowanych pakietów wraz z ich wersjami do pliku <code>requirements.txt</code>.</p>
+<p><strong>Instalacja zależności z <code>requirements.txt</code></strong></p>
+<p>Aby zainstalować zależności z pliku <code>requirements.txt</code>, użyj:</p>
+<pre class="hljs"><code><div>pip install -r requirements.txt
+</div></code></pre>
+<h3 id="zarz%C4%85dzanie-pakietami-z-conda">Zarządzanie pakietami z <code>conda</code></h3>
+<p>Conda to system zarządzania pakietami, który jest używany głównie dla języka Python, ale może również zarządzać pakietami z innych języków. Conda pozwala na tworzenie odizolowanych środowisk, które mogą mieć różne wersje pakietów.</p>
+<p>Podstawowe polecenia <code>conda</code>:</p>
+<p>Aby zainstalować pakiet:</p>
+<pre class="hljs"><code><div>conda install nazwa_pakietu
+</div></code></pre>
+<p>Aby zainstalować pakiet z określonego kanału:</p>
+<pre class="hljs"><code><div>conda install -c kanal nazwa_pakietu
+</div></code></pre>
+<p>Aktualizowanie pakietu:</p>
+<pre class="hljs"><code><div>conda update nazwa_pakietu
+</div></code></pre>
+<p>Odinstalowywanie pakietu:</p>
+<pre class="hljs"><code><div>conda remove nazwa_pakietu
+</div></code></pre>
+<p>Wyszukiwanie pakietów:</p>
+<pre class="hljs"><code><div>conda search nazwa_pakietu
+</div></code></pre>
+<p>Aby zobaczyć listę zainstalowanych pakietów w aktywnym środowisku:</p>
+<pre class="hljs"><code><div>conda list
+</div></code></pre>
+<h3 id="por%C3%B3wnanie-pip-i-conda">Porównanie <code>pip</code> i <code>conda</code></h3>
+<ul>
+<li><code>pip</code> jest standardowym menedżerem pakietów dla Pythona, który instaluje pakiety z PyPI.</li>
+<li><code>conda</code> może zarządzać pakietami nie tylko dla Pythona. Conda może również tworzyć izolowane środowiska, co jest przydatne w przypadku różnych projektów z różnymi zależnościami.</li>
+<li><code>pip</code> instaluje pakiety w ramach już istniejącego środowiska Pythona, <code>conda</code> może tworzyć nowe środowiska z dedykowanymi wersjami Pythona i pakietów.</li>
+<li>Pliki <code>requirements.txt</code> są używane z <code>pip</code> do śledzenia zależności projektu, podczas gdy <code>conda</code> używa pliku <code>environment.yml</code> do tego samego celu.</li>
+</ul>
+<h3 id="przyk%C5%82ady-z-pakietami-requests-i-beautifulsoup4-bs4">Przykłady z pakietami <code>requests</code> i <code>BeautifulSoup4</code> (<code>bs4</code>)</h3>
+<p><strong>Instalacja pakietów</strong></p>
+<p>Instalacja za pomocą <code>pip</code>:</p>
+<pre class="hljs"><code><div>pip install requests
+pip install beautifulsoup4
+</div></code></pre>
+<p>Instalacja za pomocą <code>conda</code>:</p>
+<pre class="hljs"><code><div>conda install requests
+conda install -c anaconda beautifulsoup4
+</div></code></pre>
+<p><strong>Przykład użycia</strong></p>
+<p>Użycie <code>requests</code> do pobrania treści strony internetowej i <code>BeautifulSoup4</code> do jej przetwarzania:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup
+
+url = <span class="hljs-string">'https://www.przykladowa-strona.com'</span>
+response = requests.get(url)
+soup = BeautifulSoup(response.text, <span class="hljs-string">'html.parser'</span>)
+
+<span class="hljs-comment"># Znajdź wszystkie paragrafy na stronie</span>
+paragrafy = soup.find_all(<span class="hljs-string">'p'</span>)
+
+<span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> paragrafy:
+    print(p.text)
+</div></code></pre>
+<h3 id="wirtualne-%C5%9Brodowiska-pythona-venv">Wirtualne środowiska Pythona (<code>venv</code>)</h3>
+<p>Wirtualne środowiska w Pythonie (<code>venv</code>) pozwalają na tworzenie izolowanych środowisk dla poszczególnych projektów Pythonowych. Dzięki temu, możesz zarządzać zależnościami projektów niezależnie od siebie, co pomaga unikać konfliktów i zapewnia większą kontrolę nad pakietami i ich wersjami.</p>
+<p>Aby stworzyć nowe środowisko, wykonaj:</p>
+<pre class="hljs"><code><div>python3 -m venv nazwa_srodowiska
+</div></code></pre>
+<p>Aby aktywować środowisko, użyj:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">source</span> nazwa_srodowiska/bin/activate
+</div></code></pre>
+<p>Gdy środowisko jest aktywne, możesz zarządzać pakietami z użyciem <code>pip</code>. Aby śledzić zależności projektu, wyeksportuj zainstalowane pakiety do <code>requirements.txt</code>:</p>
+<pre class="hljs"><code><div>pip freeze &gt; requirements.txt
+</div></code></pre>
+<p>Aby zainstalować pakiety z pliku <code>requirements.txt</code> w aktywnym środowisku:</p>
+<pre class="hljs"><code><div>pip install -r requirements.txt
+</div></code></pre>
+<p>Aby dezaktywować aktualne środowisko venv:</p>
+<pre class="hljs"><code><div>deactivate
+</div></code></pre>
+<h3 id="%C5%9Brodowiska-conda-conda-env">Środowiska Conda (<code>conda env</code>)</h3>
+<p>Conda jest potężnym narzędziem do zarządzania środowiskami, które pozwala na obsługę różnych wersji Pythona i pakietów, co jest niezwykle przydatne przy pracy nad wieloma projektami wymagającymi różnych konfiguracji.</p>
+<p>Aby utworzyć nowe środowisko conda z określoną wersją Pythona:</p>
+<pre class="hljs"><code><div>conda create --name nazwa_srodowiska python=3.x
+</div></code></pre>
+<p>Aby aktywować środowisko conda:</p>
+<pre class="hljs"><code><div>conda activate nazwa_srodowiska
+</div></code></pre>
+<p>Możesz eksportować środowisko do pliku <code>environment.yml</code>, co pozwala na łatwe replikowanie środowiska na innych maszynach:</p>
+<pre class="hljs"><code><div>conda env <span class="hljs-built_in">export</span> &gt; environment.yml
+</div></code></pre>
+<p>Tworzenie środowiska z pliku <code>environment.yml</code>:</p>
+<pre class="hljs"><code><div>conda env create -f environment.yml
+</div></code></pre>
+<p>Conda pozwala na tworzenie kompleksowych i łatwo przenaszalnych środowisk, co czyni ją idealnym narzędziem dla projektów wymagających specyficznych i skomplikowanych konfiguracji zależności. Aby dezaktywować aktualnie używane środiwsko conda:</p>
+<pre class="hljs"><code><div>conda deactivate
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>Rozpocznij od zainstalowania biblioteki <code>click</code> i przy jej pomocy stwórz prosty program, który poprosi użytkownika o wprowadzenie swojego imienia i wyświetli personalizowane powitanie (znajdź i sprawdź dokumentację biblioteki).</li>
+<li>Stwórz wirtualne środowisko za pomocą <code>venv</code>, zainstaluj w nim pakiet <code>numpy</code>, a następnie wygeneruj plik <code>requirements.txt</code>. Podejrzyj wygenerowany plik.</li>
+<li>Użyj Conda do stworzenia nowego środowiska, zainstaluj w nim pakiet <code>numpy</code> i wyeksportuj listę pakietów do pliku <code>environment.yml</code>. Podejrzyj wygenerowany plik.</li>
+<li>Wykorzystaj biblioteki <code>requests</code> i <code>BeautifulSoup</code> do pobrania i wyświetlenia tytułu strony internetowej. Zainstaluj wymagane pakiety, jeśli nie są jeszcze zainstalowane. Znajdź i skorzystaj z ogólnodostępnej dokumentacji wskazanych bibliotek.</li>
+</ol>
+<h1 id="11-wyra%C5%BCenia-regularne-w-pythonie-regex-a-id%22wyrazenia-regularne-w-pythonie-regex%22a">11. Wyrażenia regularne w Pythonie (RegEx) <a id="wyrazenia-regularne-w-pythonie-regex"></a></h1>
+<p>Wyrażenia regularne, zwane też regexami, to sekwencje znaków używane do wyszukiwania i zastępowania wzorców w tekście. Dzięki nim można np. sprawdzić, czy ciąg znaków wygląda jak adres email, numer telefonu, czy zawiera tylko cyfry.</p>
+<p><strong>Dlaczego warto ich używać?</strong></p>
+<ul>
+<li><strong>Automatyzacja</strong>: Przetwarzaj teksty szybko, wykonując złożone zadania wyszukiwania i zastępowania.</li>
+<li><strong>Walidacja danych</strong>: Sprawdź, czy dane wejściowe pasują do oczekiwanego formatu.</li>
+<li><strong>Wyszukiwanie</strong>: Znajdź wszystkie wystąpienia określonego wzorca w tekście.</li>
+<li><strong>Transformacja tekstu</strong>: Zmień format danych wejściowych na żądany format wyjściowy.</li>
+</ul>
+<h3 id="podstawy-regex-w-pythonie">Podstawy regex w Pythonie</h3>
+<p>W Pythonie, wyrażenia regularne obsługiwane są przez moduł <code>re</code>, który należy zaimportować przed użyciem.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> re
+</div></code></pre>
+<p><strong>Przykłady podstawowych operacji</strong></p>
+<ol>
+<li>
+<p><strong>Wyszukiwanie wzorca</strong>:</p>
+<pre class="hljs"><code><div>tekst = <span class="hljs-string">"Nauka Pythona jest zabawna!"</span>
+wzorzec = <span class="hljs-string">'Pythona'</span>
+pasuje = re.search(wzorzec, tekst)
+<span class="hljs-keyword">if</span> pasuje:
+    print(<span class="hljs-string">"Znaleziono wzorzec!"</span>)
+</div></code></pre>
+</li>
+<li>
+<p><strong>Podział tekstu</strong>:</p>
+<pre class="hljs"><code><div>tekst = <span class="hljs-string">"Nauka-Pythona-jest-zabawna!"</span>
+podzielony_tekst = re.split(<span class="hljs-string">'-'</span>, tekst)
+print(podzielony_tekst)
+</div></code></pre>
+</li>
+<li>
+<p><strong>Zastępowanie tekstu</strong>:</p>
+<pre class="hljs"><code><div>tekst = <span class="hljs-string">"Nauka Pythona jest zabawna!"</span>
+tekst_zastapiony = re.sub(<span class="hljs-string">'zabawna'</span>, <span class="hljs-string">'super'</span>, tekst)
+print(tekst_zastapiony)
+</div></code></pre>
+</li>
+</ol>
+<p><strong>Tabela z różnymi znakami w regexie</strong></p>
+<table>
+<thead>
+<tr>
+<th>Znak</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Dopasowuje dowolny znak oprócz nowej linii (domyślnie)</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Dopasowuje początek linii</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Dopasowuje koniec linii</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Dopasowuje 0 lub więcej wystąpień poprzedzającego elementu</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Dopasowuje 1 lub więcej wystąpień poprzedzającego elementu</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Oznacza, że poprzedzający element jest opcjonalny (0 lub 1 wystąpienie)</td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>Dopasowuje dokładnie <code>n</code> wystąpień poprzedzającego elementu</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>Dopasowuje <code>n</code> lub więcej wystąpień poprzedzającego elementu</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>Dopasowuje od <code>n</code> do <code>m</code> wystąpień poprzedzającego elementu</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>Zestaw znaków. Dopasowuje każdy znak zawarty w nawiasach</td>
+</tr>
+<tr>
+<td><code>[^]</code></td>
+<td>Zaprzeczenie zestawu znaków. Dopasowuje każdy znak niezawarty w nawiasach</td>
+</tr>
+<tr>
+<td><code>\|</code></td>
+<td>Alternatywa, dopasowuje każdy z podanych wzorców</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Dopasowuje granicę słowa</td>
+</tr>
+<tr>
+<td><code>\B</code></td>
+<td>Dopasowuje pozycję, która nie jest granicą słowa</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>Dopasowuje dowolną cyfrę (odpowiednik [0-9])</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Dopasowuje dowolny znak, który nie jest cyfrą</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Dopasowuje dowolny biały znak (np. spacja, tabulacja)</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Dopasowuje dowolny znak niebędący białym znakiem</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Dopasowuje dowolny znak słowny (odpowiednik [a-zA-Z0-9_])</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Dopasowuje dowolny znak, który nie jest znakiem słownym</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Przykład z wykorzystaniem wyrażeń regularnych</strong></p>
+<p>Załóżmy, że chcemy znaleźć wszystkie adresy email w dużym dokumencie tekstowym. Adresy email mają charakterystyczny wzorzec, składają się z lokalnej części, symbolu <code>@</code>, oraz domeny. Poniższy regex może być użyty do ich wyszukiwania:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> re
+
+tekst = <span class="hljs-string">"Kontakt: jankowalski@example.com lub support@example.net"</span>
+pattern = <span class="hljs-string">r'[A-Za-z]+@[A-Za-z]+\.[A-Za-z0-9]+'</span>
+adresy_email = re.findall(pattern, tekst)
+
+print(adresy_email)
+</div></code></pre>
+<pre class="hljs"><code><div>['jan.kowalski@example.com', 'support@example.net']
+</div></code></pre>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>Twoim zadaniem jest napisanie wyrażenia regularnego, które wykryje każde użycie <code>sudo</code> w pliku z logami systemowymi. Użycie <code>sudo</code> może wskazywać na próby wykonania komend z uprawnieniami administratora, co w niektórych przypadkach może być niebezpieczne. Przykładowe logi do testów:<pre class="hljs"><code><div>Użytkownik1 uruchomił komendę: ls -la /home/użytkownik
+Użytkownik2 uruchomił komendę: rm -rf /home/użytkownik
+Użytkownik3 uruchomił komendę: sudo rm -rf /
+</div></code></pre>
+</li>
+<li>Atakujący często tworzą adresy e-mail z domenami najwyższego poziomu, które są rzadko używane w celu uniknięcia wykrycia. Twoim zadaniem jest napisanie wyrażenia regularnego, które znajdzie adresy e-mail zakończone na .xyz w dowolnym tekście. W celu wykonanania zadania możesz skorzystać z narzędzi online. Przykładowy tekst do przeszukania:<pre class="hljs"><code><div>Kontaktuj się z nami! Oto kilka sposobów, aby to zrobić:
+- E-mail: contact@example.com
+- Wsparcie: support@ourcompany.com
+- Incydenty: incidents@unknown.xyz
+- Marketing: promo@offers.xyz
+</div></code></pre>
+</li>
+</ol>
+<h1 id="12-pisanie-stylowego-kodu-pep8-a-id%22pisanie-stylowego-kodu-pep8%22a">12. Pisanie stylowego kodu (PEP8) <a id="pisanie-stylowego-kodu-pep8"></a></h1>
+<p>Styl pisania kodu jest kluczowy dla zachowania czytelności i łatwości utrzymania projektów programistycznych. W Pythonie istnieje oficjalny przewodnik stylu, znany jako PEP8, który zawiera zalecenia dotyczące formatowania kodu Python. Poniżej kilka kluczowych zasad z tego przewodnika:</p>
+<p><strong>Nazewnictwo Zmiennych</strong></p>
+<ul>
+<li>Zmienne powinny być nazwane małymi literami, a poszczególne słowa powinny być oddzielone podkreślnikiem. Używamy konwencji <code>snake_case</code>.</li>
+</ul>
+<pre class="hljs"><code><div>liczba_studentow = <span class="hljs-number">25</span>
+srednia_ocena = <span class="hljs-number">4.5</span>
+</div></code></pre>
+<ul>
+<li>Unikaj używania jednoliterowych nazw zmiennych, z wyjątkiem krótkotrwałego użycia zmiennych iteratorów w pętlach.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+    print(i)
+</div></code></pre>
+<p><strong>Formatowanie Linii i Białe Znaki</strong></p>
+<ul>
+<li>Używaj pustych linii, aby oddzielić funkcje i bloki kodu wewnątrz funkcji.</li>
+<li>Unikaj nadmiernego użycia białych znaków w nawiasach, nawiasach kwadratowych i klamrach.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># Dobrze sformatowany kod</span>
+log_activity(servers[<span class="hljs-number">1</span>], {threat_level: <span class="hljs-number">2</span>})
+
+<span class="hljs-comment"># Źle sformatowany kod</span>
+log_activity( servers[ <span class="hljs-number">1</span> ], { threat_level: <span class="hljs-number">2</span> } )
+</div></code></pre>
+<p><strong>Importy</strong></p>
+<ul>
+<li>Importy powinny zawsze być umieszczane na górze pliku, zaraz po ewentualnych komentarzach modułu i docstringach, a przed zmiennymi modułu i konstantami.</li>
+<li>Importy powinny być grupowane w następującej kolejności:
+<ol>
+<li>Importy standardowej biblioteki.</li>
+<li>Importy związane z zewnętrznymi bibliotekami.</li>
+<li>Importy z lokalnego aplikacji / biblioteki.</li>
+</ol>
+</li>
+<li>Zaleca się dodawanie pustej linii między każdą grupą importów.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> sys
+
+<span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt
+
+<span class="hljs-keyword">from</span> moj_modul <span class="hljs-keyword">import</span> moja_funkcja
+</div></code></pre>
+<p><strong>Komentarze</strong></p>
+<ul>
+<li>Komentarze powinny być kompletne zdania i powinny być używane, gdy kod nie jest wystarczająco jasny.</li>
+<li>Unikaj zbędnych komentarzy, które powtarzają to, co już jest oczywiste z kodu.</li>
+<li>Używaj komentarzy do wyjaśnienia decyzji projektowych, które mogą nie być oczywiste dla czytelników kodu.</li>
+</ul>
+<p><strong>Pisanie Funkcji i Metod</strong></p>
+<ul>
+<li>Funkcje i metody powinny być krótkie i spełniać jedno zadanie.</li>
+<li>Nazwy funkcji powinny być opisowe; unikaj skomplikowanych skrótów.</li>
+<li>Argumenty funkcji powinny być nazwane.</li>
+</ul>
+<h2 id="%C4%87wiczenia-do-wykonania">Ćwiczenia do wykonania</h2>
+<ol>
+<li>Zainstaluj narzędzie <code>flake8</code>, które pomoże Ci sprawdzić zgodność Twojego kodu z konwencją PEP8. Oto przykładowy kod, który zawiera kilka błędów stylu:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> sys,os
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">moja_funkcja</span><span class="hljs-params">(x,y,z)</span>:</span><span class="hljs-keyword">return</span> x+y+z
+lista=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
+<span class="hljs-keyword">if</span> len(lista)&gt;<span class="hljs-number">0</span>:
+  print(<span class="hljs-string">'Lista nie jest pusta!'</span>)
+<span class="hljs-keyword">else</span>: print(<span class="hljs-string">'Lista jest pusta!'</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> lista:print(<span class="hljs-string">f'Element listy: <span class="hljs-subst">{i}</span>'</span>)
+</div></code></pre>
+<p>Aby zainstalować <code>flake8</code>, użyj polecenia:</p>
+<pre class="hljs"><code><div>pip install flake8
+</div></code></pre>
+<p>Następnie zapisz powyższy kod w pliku o nazwie <code>przyklad.py</code> i uruchom <code>flake8</code> w terminalu:</p>
+<pre class="hljs"><code><div>flake8 przyklad.py
+</div></code></pre>
+<p>Narzędzie <code>flake8</code> wskaże linie kodu, które naruszają zasady stylu PEP8, oraz poda krótki opis błędu. Twoim zadaniem jest poprawienie tych błędów i ponowne uruchomienie <code>flake8</code>, aż do momentu, gdy nie zostaną wykryte żadne problemy ze stylem.</p>
+<p><strong>Źródła</strong></p>
+<p>Automate the Boring Stuff With Python - https://automatetheboringstuff.com</p>
+<p>HTB Academy - https://academy.hackthebox.com</p>
+<p>Python dokumentacja - https://docs.python.org/pl/3/reference/index.html</p>
+
+</body>
+</html>
